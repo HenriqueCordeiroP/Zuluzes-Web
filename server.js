@@ -1,20 +1,20 @@
 const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, set } = require("firebase/database");
+const { configDotenv, config } = require("dotenv");
+
+configDotenv({ path: ".env" });
 const express = require("express");
 const app = express();
 const port = 3000;
 
 const firebaseConfig = {
-  apiKey: "BIkO9K-d-eAwJF-uMiMPHfSRm242mOvp69dWg8Pmln5YQwFfI8GJkAEvVwnbyR3ZdnNCl_Up7QkzPSEQng1V7hk",
-  authDomain: "648643384963.firebase.com",
-  databaseURL: "https://zuluzes-a1ba9-default-rtdb.firebaseio.com",
-  projectId: "648643384963",
-  // storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "648643384963",
-  // appId: "648643384963",
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
 };
 
-// Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const database = getDatabase(firebaseApp);
 

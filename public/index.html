@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Zuluzes</title>
+  </head>
+  <body>
+    <main class="container">
+      <div class="form">
+        <h1 class="title">Zuluzes</h1>
+
+        <form id="targetForm" action="/target" method="post">
+          <div class="input-group">
+            <label for="target" class="label">Enter Target:</label>
+            <input
+              type="number"
+              id="target"
+              name="target"
+              class="input"
+              required
+              min="1"
+              placeholder="e.g.: 5"
+            />
+          </div>
+          <button type="submit" class="button confirm">Set Target</button>
+        </form>
+      </div>
+      <div class="reset-btn">
+        <a href="/reset" class="button reset-link">Reset</a>
+      </div>
+    </main>
+    <script>
+      const inputField = document.getElementById("target");
+
+      inputField.addEventListener("focus", () => {
+        document.body.classList.add("input-focused");
+      });
+
+      inputField.addEventListener("blur", () => {
+        document.body.classList.remove("input-focused");
+      });
+    </script>
+  </body>
+</html>

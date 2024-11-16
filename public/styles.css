@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #023047;
+  font-family: "Oswald", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+body.input-focused {
+  /* Background appears only when input is focused */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='30'%3E%3Ctext x='0' y='20' fill='rgba(255,255,255,0.03)' font-family='Arial' font-size='16'%3Ejoséjosé%3C/text%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 60px 30px;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+  z-index: 1;
+}
+
+.title {
+  color: #f55600;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form {
+  background-color: #edf2f4;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.label {
+  display: block;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.input:focus {
+  border-color: #f55600;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #f55600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.reset-btn {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.reset-link {
+  text-decoration: none;
+  color: inherit;
+  background-color: #bf0603;
+  color: white;
+}
+
+.reset-link:hover {
+  background-color: #ddbdfc;
+  color: black;
+}
+
+.confirm {
+  background-color: #219ebc;
+}
+
+.confirm:hover {
+  background-color: #d64900;
+}

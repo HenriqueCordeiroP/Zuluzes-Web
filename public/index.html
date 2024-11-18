@@ -10,10 +10,10 @@
     <main class="container">
       <div class="form">
         <h1 class="title">Zuluzes</h1>
-
+        <p id="currentTarget" class="target-display">Loading target...</p>
         <form id="targetForm" action="/target" method="post">
           <div class="input-group">
-            <label for="target" class="label">Enter Target:</label>
+            <label for="target" class="label">Enter New Target:</label>
             <input
               type="number"
               id="target"
@@ -28,11 +28,14 @@
         </form>
       </div>
       <div class="reset-btn">
-        <a href="/reset" class="button reset-link">Reset</a>
+        <a href="/reset" onclick="fetchTarget" class="button reset-link"
+          >Reset</a
+        >
       </div>
     </main>
     <script>
       const inputField = document.getElementById("target");
+      const currentTarget = document.getElementById("currentTarget");
 
       inputField.addEventListener("focus", () => {
         document.body.classList.add("input-focused");
@@ -41,6 +44,23 @@
       inputField.addEventListener("blur", () => {
         document.body.classList.remove("input-focused");
       });
+
+      async function fetchTarget() {
+        try {
+          const response = await fetch("/target");
+          const data = await response.json();
+          if (data.target !== null) {
+            currentTarget.textContent = `Current Target: ${data.target}`;
+          } else {
+            currentTarget.textContent = "No target set";
+          }
+        } catch (error) {
+          console.error("Error fetching target:", error);
+          currentTarget.textContent = "Failed to load target";
+        }
+      }
+
+      fetchTarget();
     </script>
   </body>
 </html>

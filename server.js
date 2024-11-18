@@ -1,5 +1,5 @@
 const { initializeApp } = require("firebase/app");
-const { getDatabase, ref, set } = require("firebase/database");
+const { getDatabase, ref, set, get } = require("firebase/database");
 const { configDotenv, config } = require("dotenv");
 
 configDotenv({ path: ".env" });
@@ -9,7 +9,7 @@ const port = 3000;
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  // authDomain: process.env.FIREBASE_AUTH_DOMAIN,
   databaseURL: process.env.FIREBASE_DATABASE_URL,
   projectId: process.env.FIREBASE_PROJECT_ID,
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
@@ -27,6 +27,20 @@ app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
   console.log("------------------------");
   next();
+});
+
+app.get("/target", async (req, res) => {
+  try {
+    const snapshot = await get(ref(database, "/pushups/target"));
+    if (snapshot.exists() && snapshot.val() !== -1) {
+      res.json({ target: snapshot.val() });
+    } else {
+      res.json({ target: null });
+    }
+  } catch (error) {
+    console.error("Error fetching target:", error);
+    res.status(500).send("Error fetching target");
+  }
 });
 
 app.post("/target", (req, res) => {
